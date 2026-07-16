@@ -16,5 +16,16 @@
     "searchPlaceholder": "ابحث عن المواضيع",
     "noResults": "لم نعثر على مقالات تطابق بحثك.",
     "showMore": "عرض المزيد"
+  },
+  "collection": {
+    "categoryEyebrow": "الفئة",
+    "categoryDescription": "كل مقالات مدونة بيليكس ضمن فئة {category}.",
+    "categoryMetaTitle": "{category} — مدونة بيليكس",
+    "categoryMetaDescription": "تصفّح جميع مقالات مدونة بيليكس ضمن فئة {category}.",
+    "tagEyebrow": "الوسم",
+    "tagDescription": "كل مقالات مدونة بيليكس الموسومة بـ«{tag}».",
+    "tagMetaTitle": "#{tag} — مدونة بيليكس",
+    "tagMetaDescription": "تصفّح جميع مقالات مدونة بيليكس الموسومة بـ {tag}.",
+    "backToAll": "العودة إلى كل المقالات"
   }
 }

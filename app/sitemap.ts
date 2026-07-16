@@ -1,12 +1,15 @@
 import type { MetadataRoute } from "next";
+import { getAllCategorySlugs, getAllTagSlugs } from "@/content/blogs";
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://billix.io";
 
-const PAGES: Array<{
+type SitemapPage = {
   path: string;
   changeFrequency: "weekly" | "monthly" | "yearly";
   priority: number;
-}> = [
+};
+
+const PAGES: SitemapPage[] = [
   { path: "", changeFrequency: "weekly", priority: 1 },
   { path: "/about", changeFrequency: "monthly", priority: 0.8 },
   { path: "/pricing", changeFrequency: "weekly", priority: 0.9 },
@@ -17,6 +20,12 @@ const PAGES: Array<{
   { path: "/privacy-policy", changeFrequency: "yearly", priority: 0.3 },
   { path: "/terms-of-service", changeFrequency: "yearly", priority: 0.3 },
   { path: "/security-policy", changeFrequency: "yearly", priority: 0.3 },
+  ...getAllCategorySlugs().map(
+    (slug): SitemapPage => ({ path: `/blogs/category/${slug}`, changeFrequency: "weekly", priority: 0.5 }),
+  ),
+  ...getAllTagSlugs().map(
+    (slug): SitemapPage => ({ path: `/blogs/tag/${slug}`, changeFrequency: "weekly", priority: 0.4 }),
+  ),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -16,5 +16,16 @@
     "searchPlaceholder": "Search for topics",
     "noResults": "No articles found matching your search.",
     "showMore": "Show more"
+  },
+  "collection": {
+    "categoryEyebrow": "Category",
+    "categoryDescription": "Every Billix article filed under {category}.",
+    "categoryMetaTitle": "{category} — Billix Blog",
+    "categoryMetaDescription": "Browse all Billix blog articles in the {category} category.",
+    "tagEyebrow": "Tag",
+    "tagDescription": "Every Billix article tagged “{tag}”.",
+    "tagMetaTitle": "#{tag} — Billix Blog",
+    "tagMetaDescription": "Browse all Billix blog articles tagged {tag}.",
+    "backToAll": "Back to all articles"
   }
 }

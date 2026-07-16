@@ -1,9 +1,12 @@
 import PageHeading from "@/components/ui/page-heading";
+import { Link } from "@/i18n/navigation";
 import SparklesPenIcon from "@/icons/ui/sparkles-pen-icon";
 import { INTRO_STAGGER, LOADER_DELAY } from "@/constants";
+import { getCategorySlug, getTagSlug } from "@/content/blogs";
 
 const BlogDetailHeading = ({
   category,
+  tags,
   title,
   description,
   date,
@@ -11,6 +14,7 @@ const BlogDetailHeading = ({
   readTime,
 }: {
   category: string;
+  tags: string[];
   title: string;
   description: string;
   date: string;
@@ -40,6 +44,28 @@ const BlogDetailHeading = ({
             <SparklesPenIcon />
           </div>
         </div>
+      </div>
+
+      <div
+        data-reveal-group
+        data-reveal-delay={LOADER_DELAY + INTRO_STAGGER}
+        className="body-base-sm flex flex-wrap items-center justify-center gap-[0.4rem]"
+      >
+        <Link
+          href={`/blogs/category/${getCategorySlug(category)}`}
+          className="bg-foreground text-background px-base py-sm ease-out-quad grid place-content-center rounded-full leading-none transition-opacity hover:opacity-80"
+        >
+          {category}
+        </Link>
+        {tags.map(tag => (
+          <Link
+            key={tag}
+            href={`/blogs/tag/${getTagSlug(tag)}`}
+            className="border-foreground text-foreground px-base py-sm ease-out-quad grid place-content-center rounded-full border border-dashed leading-none transition-colors hover:opacity-70"
+          >
+            #{tag}
+          </Link>
+        ))}
       </div>
     </div>
   );

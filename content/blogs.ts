@@ -4,6 +4,7 @@ export interface BlogPost {
   title: string;
   description: string;
   category: string;
+  tags: string[];
   author: string;
   date: string;
   readTime: string;
@@ -27,6 +28,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "we-built-billix-to-replace-your-browser-tabs",
     coverLabel: "Workspace",
+    tags: ["Productivity", "Product", "Workspace"],
     title: "We Built Billix to Replace Your Browser Tabs",
     description:
       "How a frustration with 30 open tabs led us to build a unified AI workspace, and what we learned along the way.",
@@ -88,6 +90,7 @@ But the core idea hasn't changed since day one: your tools should work for you, 
   {
     slug: "your-team-doesnt-need-another-dashboard",
     coverLabel: "Dashboards",
+    tags: ["Dashboards", "Product", "Workflows"],
     title: "Your Team Doesn't Need Another Dashboard",
     description:
       "Dashboard fatigue is real. Here's why action-oriented interfaces beat passive data displays every time.",
@@ -138,6 +141,7 @@ Action beats observation. Every time.`,
   {
     slug: "the-hidden-cost-of-alt-tabbing",
     coverLabel: "Focus",
+    tags: ["Focus", "Productivity", "Automation"],
     title: "The Hidden Cost of Alt-Tabbing Through Your Workday",
     description:
       "Research shows context switching costs 23 minutes per interruption. We measured the real impact across our team.",
@@ -193,6 +197,7 @@ The goal isn't zero context switches. That's impossible. The goal is intentional
   {
     slug: "building-500-integrations-without-going-insane",
     coverLabel: "Integrations",
+    tags: ["Integrations", "Engineering", "APIs"],
     title: "Building 500+ Integrations Without Going Insane",
     description:
       "A look inside our integration architecture—what worked, what broke, and the OAuth flow that still haunts our dreams.",
@@ -260,6 +265,7 @@ Building integrations at scale is grunt work. There's no magic architecture that
   {
     slug: "what-three-months-of-ai-email-triage-taught-us",
     coverLabel: "Email",
+    tags: ["Email", "Automation", "Productivity"],
     title: "What Three Months of AI Email Triage Taught Us",
     description:
       "We ran an experiment: let AI sort, prioritize, and draft responses to all incoming email. Here's the honest breakdown.",
@@ -321,6 +327,7 @@ Would I go back? Absolutely not. But I'd warn anyone trying this: start with low
   {
     slug: "support-teams-deserve-better-than-chatbot-scripts",
     coverLabel: "Support",
+    tags: ["Customer Support", "Chatbots", "Automation"],
     title: "Support Teams Deserve Better Than Chatbot Scripts",
     description:
       "Why traditional chatbots made customer support worse, and how AI should actually help your support team.",
@@ -376,6 +383,7 @@ The numbers matter, but what really sold me was walking by the support area and 
   {
     slug: "ai-in-sales-cutting-through-the-hype",
     coverLabel: "Sales",
+    tags: ["Sales", "Automation", "Productivity"],
     title: "AI in Sales: Cutting Through the Hype",
     description:
       "Most AI sales tools overpromise. Here's what actually helps reps close deals, and what's just expensive noise.",
@@ -426,6 +434,7 @@ Use AI to sell more, not to sell instead of you.`,
   {
     slug: "the-chatbot-problem-nobody-wants-to-admit",
     coverLabel: "Chatbots",
+    tags: ["Chatbots", "Customer Support", "UX"],
     title: "The Chatbot Problem Nobody Wants to Admit",
     description:
       "Chatbots were supposed to transform customer interaction. Instead, they created a trust gap that's hard to close.",
@@ -482,6 +491,7 @@ Build systems that know their limits and hand off gracefully. Measure success by
   {
     slug: "why-we-over-engineered-our-encryption",
     coverLabel: "Security",
+    tags: ["Security", "Engineering", "Enterprise"],
     title: "Why We Over-Engineered Our Encryption",
     description:
       "Our CTO explains the technical decisions behind Billix's encryption architecture, and why overkill was the right call.",
@@ -546,6 +556,7 @@ Security isn't just about preventing breaches. It's about earning trust. And som
   {
     slug: "screening-10000-applicants-what-we-learned",
     coverLabel: "Hiring",
+    tags: ["Hiring", "Automation", "Bias"],
     title: "Screening 10,000 Applicants: What We Learned",
     description:
       "Our head of talent shares the reality of AI-assisted hiring at scale, including the bias traps we almost fell into.",
@@ -608,6 +619,7 @@ If you're considering AI-assisted screening:
   {
     slug: "stop-managing-projects-start-finishing-them",
     coverLabel: "Workflows",
+    tags: ["Workflows", "Automation", "Productivity"],
     title: "Stop Managing Projects. Start Finishing Them.",
     description:
       "We spent more time updating project boards than doing actual work. Here's how we fixed that.",
@@ -673,6 +685,7 @@ And please, for the sake of your team's sanity, stop requiring people to manuall
   {
     slug: "from-slack-chaos-to-calm-in-under-20-minutes",
     coverLabel: "Slack",
+    tags: ["Slack", "Automation", "Productivity"],
     title: "From Slack Chaos to Calm in Under 20 Minutes",
     description:
       "A practical guide to taming notification overload with AI-powered Slack workflows.",
@@ -747,6 +760,7 @@ The goal isn't inbox zero for Slack. It's inbox intentional—you see what matte
   {
     slug: "honest-notes-on-ai-assisted-content-creation",
     coverLabel: "Content",
+    tags: ["Content", "Writing", "Productivity"],
     title: "Honest Notes on AI-Assisted Content Creation",
     description:
       "After a year of using AI for writing, here's what it's actually good at, what it's terrible at, and what surprised me.",
@@ -804,6 +818,7 @@ This hybrid approach produces better content faster than either pure human or pu
   {
     slug: "how-we-earned-our-first-enterprise-contract",
     coverLabel: "Enterprise",
+    tags: ["Enterprise", "Sales", "Security"],
     title: "How We Earned Our First Enterprise Contract",
     description:
       "The 7-month story of winning our first enterprise deal, from cold outreach to signed contract.",
@@ -865,6 +880,7 @@ That first contract changed our trajectory. Not because of the revenue—though 
   {
     slug: "the-integration-gap-your-tools-wont-talk-about",
     coverLabel: "Connect",
+    tags: ["Integrations", "APIs", "Engineering"],
     title: "The Integration Gap Your Tools Won't Talk About",
     description:
       "Most SaaS tools claim to 'integrate' with everything. The reality is messier than the marketing suggests.",
@@ -940,4 +956,53 @@ export function getBlogBySlug(slug: string): BlogPost | undefined {
 
 export function getAllSlugs(): string[] {
   return BLOG_POSTS.map(post => post.slug);
+}
+
+function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+// Real categories, excluding the "View all" pseudo-category used by the filter UI.
+export const BLOG_CATEGORIES = CATEGORIES.filter(category => category !== "View all");
+
+export function getCategorySlug(category: string): string {
+  return slugify(category);
+}
+
+export function getCategoryBySlug(slug: string): string | undefined {
+  return BLOG_CATEGORIES.find(category => slugify(category) === slug);
+}
+
+export function getPostsByCategory(category: string): BlogPost[] {
+  return BLOG_POSTS.filter(post => post.category === category);
+}
+
+export function getAllCategorySlugs(): string[] {
+  return BLOG_CATEGORIES.map(slugify);
+}
+
+export function getAllTags(): string[] {
+  const tags = new Set<string>();
+  BLOG_POSTS.forEach(post => post.tags.forEach(tag => tags.add(tag)));
+  return Array.from(tags).sort((a, b) => a.localeCompare(b));
+}
+
+export function getTagSlug(tag: string): string {
+  return slugify(tag);
+}
+
+export function getTagBySlug(slug: string): string | undefined {
+  return getAllTags().find(tag => slugify(tag) === slug);
+}
+
+export function getPostsByTag(tag: string): BlogPost[] {
+  return BLOG_POSTS.filter(post => post.tags.includes(tag));
+}
+
+export function getAllTagSlugs(): string[] {
+  return getAllTags().map(slugify);
 }

@@ -50,6 +50,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
           <div className="col-span-12 sm:col-span-8 sm:col-start-3 md:col-span-6 md:col-start-4">
             <BlogDetailHeading
               category={post.category}
+              tags={post.tags}
               title={post.title}
               description={post.description}
               date={post.date}
