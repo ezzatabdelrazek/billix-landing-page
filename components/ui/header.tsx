@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { usePathname } from "next/navigation";
 import BubbleButton from "./bubble-button";
 import DirectionalButton from "./directional-button";
+import LocaleSelector from "./locale-selector";
 import Navigation from "./navigation";
 import NextLink from "./next-link";
 import ThemeSelector from "./theme-selector";
@@ -74,6 +75,7 @@ const Header = () => {
             <BubbleButton isLink href={APP_URL} target="_blank">
               {t("startForFree")}
             </BubbleButton>
+            <LocaleSelector />
             <ThemeSelector />
           </div>
         </div>

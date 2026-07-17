@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import BubbleButton from "./bubble-button";
+import LocaleSelector from "./locale-selector";
 import NextLink from "./next-link";
 import ThemeSelector from "./theme-selector";
 import { MAIN_ROUTES } from "@/constants";
@@ -153,6 +154,7 @@ const HeaderCompact = () => {
           </button>
           <div className="gap-xs pointer-events-auto flex items-center">
             <BubbleButton variant="secondary">{t("actions.startForFree")}</BubbleButton>
+            <LocaleSelector className="bg-foreground text-background border-background/60" />
             <ThemeSelector className="bg-foreground text-background border-background/60" />
           </div>
         </div>

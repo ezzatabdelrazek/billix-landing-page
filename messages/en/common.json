@@ -21,6 +21,11 @@
     "startForFree": "Start for free",
     "menu": "Menu"
   },
+  "language": {
+    "en": "English",
+    "ar": "Arabic",
+    "switchTo": "Switch to {language}"
+  },
   "footer": {
     "description": "Billix unifies AI chat, automation, content creation, and 500+ integrations in one seamless workspace. Give plain-language instructions and let Billix execute real actions instantly—no setup, no tech skills required.",
     "sections": {
