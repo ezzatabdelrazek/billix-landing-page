@@ -4,6 +4,7 @@ import { FAQPageJsonLd } from "@/components/seo/json-ld";
 import FaqsSection from "@/components/ui/faqs-section";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SITE_URL } from "@/constants";
 
 export async function generateMetadata({
   params,
@@ -13,8 +14,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "pricing.metadata" });
 
-  const enUrl = "https://billix.io/pricing";
-  const arUrl = "https://billix.io/ar/pricing";
+  const enUrl = `${SITE_URL}/pricing`;
+  const arUrl = `${SITE_URL}/ar/pricing`;
   const canonical = locale === "ar" ? arUrl : enUrl;
 
   return {

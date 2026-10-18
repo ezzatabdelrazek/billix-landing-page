@@ -5,13 +5,14 @@ import AboutWhyWeExistSection from "@/components/about/about-why-we-exist-sectio
 import CtaSection from "@/components/ui/cta-section";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SITE_URL } from "@/constants";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about.metadata" });
 
-  const enUrl = "https://billix.io/about";
-  const arUrl = "https://billix.io/ar/about";
+  const enUrl = `${SITE_URL}/about`;
+  const arUrl = `${SITE_URL}/ar/about`;
   const canonical = locale === "ar" ? arUrl : enUrl;
 
   return {

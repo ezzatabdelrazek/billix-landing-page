@@ -3,13 +3,14 @@ import ChangelogHeading from "@/components/changelog/changelog-heading";
 import CtaSection from "@/components/ui/cta-section";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SITE_URL } from "@/constants";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "changelog.metadata" });
 
-  const enUrl = "https://billix.io/changelog";
-  const arUrl = "https://billix.io/ar/changelog";
+  const enUrl = `${SITE_URL}/changelog`;
+  const arUrl = `${SITE_URL}/ar/changelog`;
   const url = locale === "ar" ? arUrl : enUrl;
 
   return {

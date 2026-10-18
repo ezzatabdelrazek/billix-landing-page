@@ -99,7 +99,7 @@ export async function generateMetadata({
       "HubSpot automation",
       "Salesforce integration",
     ],
-    authors: [{ name: "Billix", url: "https://billix.io" }],
+    authors: [{ name: "Billix", url: SITE_URL }],
     creator: "Billix",
     publisher: "Billix",
     formatDetection: {

@@ -4,6 +4,7 @@ import BlogDetailHeading from "@/components/blogs/blog-detail-heading";
 import CtaSection from "@/components/ui/cta-section";
 import { getBlogBySlug, getAllSlugs } from "@/content/blogs";
 import { setRequestLocale } from "next-intl/server";
+import { SITE_URL } from "@/constants";
 
 export function generateStaticParams() {
   return getAllSlugs().map(slug => ({ slug }));
@@ -14,8 +15,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const post = getBlogBySlug(slug);
   if (!post) return {};
 
-  const enUrl = `https://billix.io/blogs/${slug}`;
-  const arUrl = `https://billix.io/ar/blogs/${slug}`;
+  const enUrl = `${SITE_URL}/blogs/${slug}`;
+  const arUrl = `${SITE_URL}/ar/blogs/${slug}`;
   const url = locale === "ar" ? arUrl : enUrl;
 
   return {

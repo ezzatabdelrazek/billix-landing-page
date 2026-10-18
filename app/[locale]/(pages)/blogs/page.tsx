@@ -3,13 +3,14 @@ import BlogsHeading from "@/components/blogs/blogs-heading";
 import CtaSection from "@/components/ui/cta-section";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SITE_URL } from "@/constants";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "blogs.metadata" });
 
-  const enUrl = "https://billix.io/blogs";
-  const arUrl = "https://billix.io/ar/blogs";
+  const enUrl = `${SITE_URL}/blogs`;
+  const arUrl = `${SITE_URL}/ar/blogs`;
   const url = locale === "ar" ? arUrl : enUrl;
 
   return {

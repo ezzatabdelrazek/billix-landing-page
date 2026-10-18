@@ -4,13 +4,14 @@ import CtaSection from "@/components/ui/cta-section";
 import FaqsSection from "@/components/ui/faqs-section";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SITE_URL } from "@/constants";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "legal.privacy.metadata" });
 
-  const enUrl = "https://billix.io/privacy-policy";
-  const arUrl = "https://billix.io/ar/privacy-policy";
+  const enUrl = `${SITE_URL}/privacy-policy`;
+  const arUrl = `${SITE_URL}/ar/privacy-policy`;
   const url = locale === "ar" ? arUrl : enUrl;
 
   return {

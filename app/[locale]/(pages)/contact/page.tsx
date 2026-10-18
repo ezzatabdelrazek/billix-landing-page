@@ -3,6 +3,7 @@ import ContactHeading from "@/components/contact/contact-heading";
 import CtaSection from "@/components/ui/cta-section";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SITE_URL } from "@/constants";
 
 export async function generateMetadata({
   params,
@@ -12,8 +13,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "contact.metadata" });
 
-  const enUrl = "https://billix.io/contact";
-  const arUrl = "https://billix.io/ar/contact";
+  const enUrl = `${SITE_URL}/contact`;
+  const arUrl = `${SITE_URL}/ar/contact`;
   const canonical = locale === "ar" ? arUrl : enUrl;
 
   return {

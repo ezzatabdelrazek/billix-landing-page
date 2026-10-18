@@ -6,6 +6,7 @@ import PageHeading from "@/components/ui/page-heading";
 import { getAllTagSlugs, getPostsByTag, getTagBySlug } from "@/content/blogs";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SITE_URL } from "@/constants";
 
 export function generateStaticParams() {
   return getAllTagSlugs().map(tag => ({ tag }));
@@ -23,8 +24,8 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "blogs.collection" });
 
   const path = `/blogs/tag/${tagSlug}`;
-  const enUrl = `https://billix.io${path}`;
-  const arUrl = `https://billix.io/ar${path}`;
+  const enUrl = `${SITE_URL}${path}`;
+  const arUrl = `${SITE_URL}/ar${path}`;
   const url = locale === "ar" ? arUrl : enUrl;
 
   return {

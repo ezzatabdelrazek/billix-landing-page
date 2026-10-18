@@ -1,7 +1,10 @@
 import type { MetadataRoute } from "next";
 import { getAllCategorySlugs, getAllTagSlugs } from "@/content/blogs";
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://billix.io";
+import { SITE_URL } from "@/constants";
+
+// The marketing site lives on billix.xyz (Ezzat 2026-10-18); APP_URL (billix.io) is only for the product links.
+const BASE_URL = SITE_URL;
 
 type SitemapPage = {
   path: string;

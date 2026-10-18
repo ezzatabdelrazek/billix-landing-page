@@ -5,13 +5,14 @@ import CtaSection from "@/components/ui/cta-section";
 import FeaturesSection from "@/components/ui/features-section/features-section";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SITE_URL } from "@/constants";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "enterprise.metadata" });
 
-  const enUrl = "https://billix.io/enterprise";
-  const arUrl = "https://billix.io/ar/enterprise";
+  const enUrl = `${SITE_URL}/enterprise`;
+  const arUrl = `${SITE_URL}/ar/enterprise`;
   const canonical = locale === "ar" ? arUrl : enUrl;
 
   return {
