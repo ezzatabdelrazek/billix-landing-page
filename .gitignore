@@ -43,3 +43,6 @@ next-env.d.ts
 # lighthouse run artifacts
 lh-*.json
 .lighthouseci/
+
+# pre-rendered image variants (scripts/image-variants.mjs)
+/public/_img/

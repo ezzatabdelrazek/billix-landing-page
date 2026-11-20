@@ -8,6 +8,9 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SITE_URL } from "@/constants";
 
+// Only the slugs listed below exist; anything else is a static 404, never an on-demand render.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return getAllTagSlugs().map(tag => ({ tag }));
 }
