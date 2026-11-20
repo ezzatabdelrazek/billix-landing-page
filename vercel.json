@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/_next/image", "destination": "/404", "permanent": false }
+  ]
+}
