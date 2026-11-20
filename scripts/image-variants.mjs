@@ -27,7 +27,7 @@ const FORCE = process.argv.includes("--force");
 const EXT = /\.(jpe?g|png|webp|avif)$/i;
 const SKIP_DIRS = new Set(["_img", ...(spec.skipDirs ?? [])]);
 // The render settings are part of each file's key, so changing them renders everything again.
-const SETTINGS = JSON.stringify([spec.widths, spec.quality, 3]);
+const SETTINGS = JSON.stringify([spec.widths, spec.quality, 5]);
 
 function walk(dir, rel = "") {
   const out = [];
@@ -108,13 +108,20 @@ async function render(sharp, rel) {
       fs.copyFileSync(full, out); // never upscale: steps wider than the original reuse the full-size file
       continue;
     }
+    // At full size nothing is gained by resizing, so the original is not compressed a second time:
+    // up to 1 MP it stays pixel-exact (lossless WebP), up to 2.5 MP near-lossless (grain and fine texture kept).
+    const px = srcW * ((meta.orientation ?? 1) >= 5 ? meta.width : meta.height);
+    const exact = w >= srcW && px <= 1_000_000;
+    const fine = w >= srcW && px <= 2_500_000;
     await sharp(src, { failOn: "none" })
       .rotate()
       .resize({ width: Math.min(w, srcW), kernel: "lanczos3" })
       .webp(
-        nearLossless
-          ? { nearLossless: true, quality: 90, alphaQuality: 100, effort: 4 }
-          : { quality: spec.quality, alphaQuality: 100, smartSubsample: true, effort: 4 },
+        exact
+          ? { lossless: true, effort: 4 }
+          : nearLossless || fine
+            ? { nearLossless: true, quality: nearLossless ? 90 : 60, alphaQuality: 100, effort: 4 }
+            : { quality: spec.quality, alphaQuality: 100, smartSubsample: true, effort: 4 },
       )
       .toFile(out);
     if (w >= srcW) full = out;
